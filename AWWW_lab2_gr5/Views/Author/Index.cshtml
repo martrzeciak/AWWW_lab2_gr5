@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Author> 
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div>
+    <div class="row">
+        <div class="col-6">
+            <h1>Author list</h1>
+        </div>
+        <div class="col-6 text-end pt-0">
+            <a asp-controller="Author" asp-action="AddNewAuthor" class="btn btn-dark">Add new author</a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                First name 
+            </th>
+            <th>
+                Last name
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var obj in Model)
+        {
+            <tr>    
+                <td>
+                    @obj.FirstName
+                </td>
+                <td>
+                    @obj.LastName
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
