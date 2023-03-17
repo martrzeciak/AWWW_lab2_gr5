@@ -12,12 +12,10 @@ namespace AWWW_lab2_gr5.Models
 
         // Foreign keys
         public int TeamId { get; set; }
-        public int PlayerId { get; set; }
         public int PositionId { get; set; }
 
         // Navigation property
         public Team Team { get; set; }
-        public Position Position { get; set; }
         public List<Position> Positions { get; set; }
         public List<MatchPlayer> MatchPlayers { get; set; }
     }

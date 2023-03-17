@@ -7,7 +7,6 @@
 
         // Navigation properties
         public List<MatchPlayer> MatchPlayers { get; set; }
-        public List<Player> PlayersOneToManyRelationship { get; set; }
-        public List<Player> PlayersManyToManyRelationship { get; set; }
+        public List<Player> Players { get; set; }
     }
 }

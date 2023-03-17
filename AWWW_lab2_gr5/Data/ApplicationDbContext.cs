@@ -136,14 +136,8 @@ namespace AWWW_lab2_gr5.Data
 
             // Position - Player relationship
             modelBuilder
-                .Entity<Player>()
-                .HasOne(pl => pl.Position)
-                .WithMany(po => po.PlayersOneToManyRelationship)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder
                 .Entity<Position>()
-                .HasMany(po => po.PlayersManyToManyRelationship)
+                .HasMany(po => po.Players)
                 .WithMany(pl => pl.Positions)
                 .UsingEntity(j => j.ToTable("PositionPlayer"));
 
