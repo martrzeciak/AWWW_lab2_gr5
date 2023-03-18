@@ -33,7 +33,7 @@ namespace AWWW_lab2_gr5.Data
                 .WithMany(a => a.Comments)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // Authors - Article relationship
+            // Author - Article relationship
             modelBuilder
                 .Entity<Article>()
                 .HasOne(a => a.Author)
@@ -140,7 +140,6 @@ namespace AWWW_lab2_gr5.Data
                 .HasMany(po => po.Players)
                 .WithMany(pl => pl.Positions)
                 .UsingEntity(j => j.ToTable("PositionPlayer"));
-
         }
     }
 }

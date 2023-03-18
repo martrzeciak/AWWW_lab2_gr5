@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
+﻿
 namespace AWWW_lab2_gr5.Models
 {
     public class Article
@@ -11,8 +10,7 @@ namespace AWWW_lab2_gr5.Models
         public DateTime CreationTime { get; set; } = DateTime.Now;
 
         // Foreign keys
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int? AuthorId { get; set; } 
+        public int AuthorId { get; set; } 
         public int CategoryId { get; set; }
         public int? MatchId { get; set; }
 

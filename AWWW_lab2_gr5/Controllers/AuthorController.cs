@@ -28,16 +28,12 @@ namespace AWWW_lab2_gr5.Controllers
         // POST
         [HttpPost]
         [ValidateAntiForgeryToken] // Prevent Cross-site request forgery
-        public IActionResult AddNewAuthor(Author obj)
+        public IActionResult AddNewAuthor( Author obj)
         {
-            if (ModelState.IsValid)
-            {
                 _db.Authors.Add(obj);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
-            }
-            
-            return View(obj);   
+ 
         }
     }
 }
