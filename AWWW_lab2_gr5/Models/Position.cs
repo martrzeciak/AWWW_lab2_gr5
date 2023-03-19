@@ -6,7 +6,7 @@
         public string Name { get; set; }
 
         // Navigation properties
-        public List<MatchPlayer> MatchPlayers { get; set; }
-        public List<Player> Players { get; set; }
+        public IList<MatchPlayer> MatchPlayers { get; set; }
+        public IList<Player> Players { get; set; }
     }
 }

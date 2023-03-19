@@ -16,7 +16,7 @@ namespace AWWW_lab2_gr5.Models
 
         // Navigation property
         public Team Team { get; set; }
-        public List<Position> Positions { get; set; }
-        public List<MatchPlayer> MatchPlayers { get; set; }
+        public IList<Position> Positions { get; set; }
+        public IList<MatchPlayer> MatchPlayers { get; set; }
     }
 }

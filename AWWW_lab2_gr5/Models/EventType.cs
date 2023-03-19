@@ -6,6 +6,6 @@
         public string Name { get; set; }
 
         // Navigation property
-        public List<MatchEvent> MatchEvents{ get; set; }
+        public IList<MatchEvent> MatchEvents{ get; set; }
     }
 }

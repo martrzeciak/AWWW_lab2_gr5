@@ -18,7 +18,7 @@ namespace AWWW_lab2_gr5.Models
         public Author Author { get; set; }
         public Category Category { get; set; }
         public Match Match{ get; set; }
-        public List<Comment> Comments { get; set; }
-        public List<Tag> Tags { get; set; }
+        public IList<Comment> Comments { get; set; }
+        public IList<Tag> Tags { get; set; }
     }
 }

@@ -13,8 +13,8 @@
 
         // Navigation properties
         public League League { get; set; }
-        public List<Match> HomeMatches { get; set; }
-        public List<Match> AwayMatches { get; set; }
-        public List<Player> Players { get; set; }
+        public IList<Match> HomeMatches { get; set; }
+        public IList<Match> AwayMatches { get; set; }
+        public IList<Player> Players { get; set; }
     }
 }

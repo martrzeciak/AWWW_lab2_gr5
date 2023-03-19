@@ -7,6 +7,6 @@ namespace AWWW_lab2_gr5.Models
         public string Name { get; set; }
 
         // Navigation property
-        public List<Article> Aricles { get; set; }
+        public IList<Article> Aricles { get; set; }
     }
 }

@@ -6,6 +6,6 @@
         public string Name { get; set; }
 
         // Navigation property
-        public List<Article> Artciles { get; set; }
+        public IList<Article> Artciles { get; set; }
     }
 }

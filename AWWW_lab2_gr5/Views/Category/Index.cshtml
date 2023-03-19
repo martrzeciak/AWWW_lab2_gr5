@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewData["Title"] = "Category";
+}
+
+<div>
+    <div class="row">
+        <div class="col-6">
+            <h1>Category list</h1>
+        </div>
+        <div class="col-6 text-end pt-0">
+            <a asp-controller="Category" asp-action="AddNewCategory" class="btn btn-dark">Add new category</a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Category name
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>
+                   @obj.Name
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

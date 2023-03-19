@@ -13,6 +13,6 @@
         public Match Match { get; set; }
         public Position Position { get; set; }
         public Player Player { get; set; }
-        public List<MatchEvent> MatchEvents { get; set; }
+        public IList<MatchEvent> MatchEvents { get; set; }
     }
 }

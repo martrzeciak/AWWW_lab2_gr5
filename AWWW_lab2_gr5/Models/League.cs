@@ -8,6 +8,6 @@
         public int Level { get; set; }
 
         // Navigation property
-        public List<Team> Teams { get; set; }
+        public IList<Team> Teams { get; set; }
     }
 }

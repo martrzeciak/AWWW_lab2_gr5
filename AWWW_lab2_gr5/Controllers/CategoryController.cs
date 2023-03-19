@@ -4,23 +4,24 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AWWW_lab2_gr5.Controllers
 {
-    public class AuthorController : Controller
+    public class CategoryController : Controller
     {
         private readonly ApplicationDbContext _db;
 
-        public AuthorController(ApplicationDbContext db)
+        public CategoryController(ApplicationDbContext db)
         {
             _db = db;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Author> objAuthorList = _db.Authors;
-            return View(objAuthorList);
+           IEnumerable<Category> objCategoryList = _db.Categories;
+           return View(objCategoryList);
+           
         }
 
         // GET
-        public IActionResult AddNewAuthor()
+        public IActionResult AddNewCategory()
         {
             return View();
         }
@@ -28,11 +29,11 @@ namespace AWWW_lab2_gr5.Controllers
         // POST
         [HttpPost]
         [ValidateAntiForgeryToken] // Prevent Cross-site request forgery
-        public IActionResult AddNewAuthor(Author obj)
+        public IActionResult AddNewCategory(Category obj)
         {
-                _db.Authors.Add(obj);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
+            _db.Categories.Add(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
