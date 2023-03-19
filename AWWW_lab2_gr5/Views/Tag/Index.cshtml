@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Tag>
+@{
+    ViewData["Title"] = "Tag";
+}
+
+<div>
+    <div class="row">
+        <div class="col-6">
+            <h1>Tag list</h1>
+        </div>
+        <div class="col-6 text-end pt-0">
+            <a asp-controller="Tag" asp-action="AddNewTag" class="btn btn-dark">Add new tag</a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var obj in Model)
+        {
+            <tr>    
+                <td>
+                    @obj.Name
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

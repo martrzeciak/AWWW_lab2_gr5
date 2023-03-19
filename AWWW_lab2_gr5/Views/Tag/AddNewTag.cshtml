@@ -1,0 +1,23 @@
+﻿@model Category
+
+<form method="post">
+    <div>
+        <div>
+            <h2>Add tag</h2>
+        </div>
+        <div class="mb-2">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="text-end">
+            <button type="submit" class="btn btn-dark" style="width:100px">Add</button>
+            <a asp-controller="Tag" asp-action="Index" class="btn btn-secondary" style="width:100px">Back</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+        <partial name="_ValidationScriptsPartial" />
+}
+
