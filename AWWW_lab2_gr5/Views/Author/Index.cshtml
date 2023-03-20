@@ -17,24 +17,16 @@
 <table class="table table-bordered table-striped" style="width:100%">
     <thead>
         <tr>
-            <th>
-                First name 
-            </th>
-            <th>
-                Last name
-            </th>
+            <th>First name</th>
+            <th>Last name</th>
         </tr>
     </thead>
     <tbody>
         @foreach(var obj in Model)
         {
             <tr>    
-                <td>
-                    @obj.FirstName
-                </td>
-                <td>
-                    @obj.LastName
-                </td>
+                <td>@obj.FirstName</td>
+                <td>@obj.LastName</td>
             </tr>
         }
     </tbody>
