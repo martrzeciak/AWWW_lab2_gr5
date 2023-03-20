@@ -1,5 +1,4 @@
-﻿
-namespace AWWW_lab2_gr5.Models
+﻿namespace AWWW_lab2_gr5.Models
 {
     public class Article
     {
@@ -10,14 +9,14 @@ namespace AWWW_lab2_gr5.Models
         public DateTime CreationTime { get; set; } = DateTime.Now;
 
         // Foreign keys
-        public int AuthorId { get; set; } 
+        public int AuthorId { get; set; }
         public int CategoryId { get; set; }
         public int? MatchId { get; set; }
 
         // Navigation properties
         public Author Author { get; set; }
         public Category Category { get; set; }
-        public Match Match{ get; set; }
+        public Match Match { get; set; }
         public IList<Comment> Comments { get; set; }
         public IList<Tag> Tags { get; set; }
     }

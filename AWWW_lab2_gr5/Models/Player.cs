@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-
-namespace AWWW_lab2_gr5.Models
+﻿namespace AWWW_lab2_gr5.Models
 {
     public class Player
     {

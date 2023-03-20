@@ -1,9 +1,9 @@
-﻿@model Category
+﻿@model EventType
 
 <form method="post">
     <div>
         <div>
-            <h2>Add category</h2>
+            <h2>Add league</h2>
         </div>
         <div class="mb-4">
             <label asp-for="Name"></label>
@@ -12,12 +12,11 @@
         </div>
         <div class="text-end">
             <button type="submit" class="btn btn-dark" style="width:100px">Add</button>
-            <a asp-controller="Category" asp-action="Index" class="btn btn-secondary" style="width:100px">Back</a>
+            <a asp-controller="EventType" asp-action="Index" class="btn btn-secondary" style="width:100px">Back</a>
         </div>
     </div>
 </form>
 
 @section Scripts{
-    <partial name="_ValidationScriptsPartial" />
+            <partial name="_ValidationScriptsPartial" />
 }
-

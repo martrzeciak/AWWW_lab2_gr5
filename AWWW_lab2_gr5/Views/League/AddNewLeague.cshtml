@@ -1,0 +1,32 @@
+﻿@model League
+
+<form method="post">
+    <div>
+        <div>
+            <h2>Add league</h2>
+        </div>
+        <div class="mb-2">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-2">
+            <label asp-for="Country"></label>
+            <input asp-for="Country" class="form-control" />
+            <span asp-validation-for="Country" class="text-danger"></span>
+        </div>
+        <div class="mb-4">
+            <label asp-for="Level"></label>
+            <input asp-for="Level" class="form-control" />
+            <span asp-validation-for="Level" class="text-danger"></span>
+        </div>
+        <div class="text-end">
+            <button type="submit" class="btn btn-dark" style="width:100px">Add</button>
+            <a asp-controller="League" asp-action="Index" class="btn btn-secondary" style="width:100px">Back</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+        <partial name="_ValidationScriptsPartial" />
+}

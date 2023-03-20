@@ -4,23 +4,23 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AWWW_lab2_gr5.Controllers
 {
-    public class LeagueController : Controller
+    public class EventTypeController : Controller
     {
         private readonly ApplicationDbContext _db;
 
-        public LeagueController(ApplicationDbContext db)
+        public EventTypeController(ApplicationDbContext db)
         {
             _db = db;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<League> objLeagueList = _db.Leagues;
-            return View(objLeagueList);
+            IEnumerable<EventType> objEventTypeList = _db.EventTypes;
+            return View(objEventTypeList);
         }
-        
+
         // GET
-        public IActionResult AddNewLeague() 
+        public IActionResult AddNewEventType() 
         {
             return View();
         }
@@ -28,9 +28,9 @@ namespace AWWW_lab2_gr5.Controllers
         // POST
         [HttpPost]
         [ValidateAntiForgeryToken] // Prevent Cross-site request forgery
-        public IActionResult AddNewLeague(League obj)
+        public IActionResult AddNewEventType(EventType obj)
         {
-            _db.Leagues.Add(obj);
+            _db.EventTypes.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }

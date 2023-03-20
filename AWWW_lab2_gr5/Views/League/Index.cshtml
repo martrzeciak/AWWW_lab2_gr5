@@ -1,0 +1,36 @@
+﻿@model IEnumerable<League>
+@{
+    ViewData["Title"] = "League";
+}
+
+<div>
+    <div class="row">
+        <div class="col-6">
+            <h1>League list</h1>
+        </div>
+        <div class="col-6 text-end pt-0">
+            <a asp-controller="League" asp-action="AddNewLeague" class="btn btn-dark">Add new league</a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>League name</th>
+            <th>Country</th>
+            <th>Level</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>@obj.Name</td>
+                <td>@obj.Country</td>
+                <td>@obj.Level</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

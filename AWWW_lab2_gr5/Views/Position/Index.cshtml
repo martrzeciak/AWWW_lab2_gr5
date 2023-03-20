@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Position>
+@{
+    ViewData["Title"] = "Position";
+}
+
+<div>
+    <div class="row">
+        <div class="col-6">
+            <h1>Positon list</h1>
+        </div>
+        <div class="col-6 text-end pt-0">
+            <a asp-controller="Position" asp-action="AddNewPosition" class="btn btn-dark">Add new position</a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Position name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+                <tr>
+                    <td>@obj.Name</td>
+                </tr>
+        }
+    </tbody>
+</table>

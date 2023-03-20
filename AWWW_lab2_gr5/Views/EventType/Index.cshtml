@@ -1,0 +1,33 @@
+﻿@model IEnumerable<EventType>
+@{
+    ViewData["Title"] = "Event type";
+}
+
+<div>
+    <div class="row">
+        <div class="col-6">
+            <h1>Event type list</h1>
+        </div>
+        <div class="col-6 text-end pt-0">
+            <a asp-controller="EventType" asp-action="AddNewEventType" class="btn btn-dark">Add new event type</a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Event type name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+                <tr>
+                    <td>@obj.Name</td>
+                </tr>
+        }
+    </tbody>
+</table>
+
+
