@@ -1,7 +1,8 @@
 ﻿using AWWW_lab2_gr5.Data;
+using AWWW_lab2_gr5.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AWWW_lab2_gr5.Models
+namespace AWWW_lab2_gr5.Controllers
 {
     public class PositionController : Controller
     {
@@ -19,7 +20,7 @@ namespace AWWW_lab2_gr5.Models
         }
 
         // GET
-        public IActionResult AddNewPosition() 
+        public IActionResult Create()
         {
             return View();
         }
@@ -27,7 +28,7 @@ namespace AWWW_lab2_gr5.Models
         // POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddNewPosition(Position obj)
+        public IActionResult Create(Position obj)
         {
             _db.Positions.Add(obj);
             _db.SaveChanges();

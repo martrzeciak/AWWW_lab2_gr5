@@ -20,7 +20,7 @@ namespace AWWW_lab2_gr5.Controllers
         }
         
         // GET
-        public IActionResult AddNewLeague() 
+        public IActionResult Create() 
         {
             return View();
         }
@@ -28,7 +28,7 @@ namespace AWWW_lab2_gr5.Controllers
         // POST
         [HttpPost]
         [ValidateAntiForgeryToken] // Prevent Cross-site request forgery
-        public IActionResult AddNewLeague(League obj)
+        public IActionResult Create(League obj)
         {
             _db.Leagues.Add(obj);
             _db.SaveChanges();

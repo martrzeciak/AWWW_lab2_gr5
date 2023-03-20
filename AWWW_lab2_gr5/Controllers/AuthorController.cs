@@ -20,7 +20,7 @@ namespace AWWW_lab2_gr5.Controllers
         }
 
         // GET
-        public IActionResult AddNewAuthor()
+        public IActionResult Create()
         {
             return View();
         }
@@ -28,7 +28,7 @@ namespace AWWW_lab2_gr5.Controllers
         // POST
         [HttpPost]
         [ValidateAntiForgeryToken] // Prevent Cross-site request forgery
-        public IActionResult AddNewAuthor(Author obj)
+        public IActionResult Create(Author obj)
         {
                 _db.Authors.Add(obj);
                 _db.SaveChanges();

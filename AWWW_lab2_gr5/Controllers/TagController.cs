@@ -20,7 +20,7 @@ namespace AWWW_lab2_gr5.Controllers
         }
 
         // GET
-        public IActionResult AddNewTag()
+        public IActionResult Create()
         {
             return View();
         }
@@ -28,7 +28,7 @@ namespace AWWW_lab2_gr5.Controllers
         // POST
         [HttpPost]
         [ValidateAntiForgeryToken] // Prevent Cross-site request forgery
-        public IActionResult AddNewTag(Tag obj)
+        public IActionResult Create(Tag obj)
         {
             _db.Tags.Add(obj);
             _db.SaveChanges();

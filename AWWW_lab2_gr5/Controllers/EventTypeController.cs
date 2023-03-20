@@ -20,7 +20,7 @@ namespace AWWW_lab2_gr5.Controllers
         }
 
         // GET
-        public IActionResult AddNewEventType() 
+        public IActionResult Create() 
         {
             return View();
         }
@@ -28,7 +28,7 @@ namespace AWWW_lab2_gr5.Controllers
         // POST
         [HttpPost]
         [ValidateAntiForgeryToken] // Prevent Cross-site request forgery
-        public IActionResult AddNewEventType(EventType obj)
+        public IActionResult Create(EventType obj)
         {
             _db.EventTypes.Add(obj);
             _db.SaveChanges();

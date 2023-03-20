@@ -21,7 +21,7 @@ namespace AWWW_lab2_gr5.Controllers
         }
 
         // GET
-        public IActionResult AddNewCategory()
+        public IActionResult Create()
         {
             return View();
         }
@@ -29,7 +29,7 @@ namespace AWWW_lab2_gr5.Controllers
         // POST
         [HttpPost]
         [ValidateAntiForgeryToken] // Prevent Cross-site request forgery
-        public IActionResult AddNewCategory(Category obj)
+        public IActionResult Create(Category obj)
         {
             _db.Categories.Add(obj);
             _db.SaveChanges();
