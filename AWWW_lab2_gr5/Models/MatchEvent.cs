@@ -6,7 +6,7 @@
         public string Minute { get; set; }
 
         // Foreign keys
-        public int MatchEventId { get; set; }
+        public int MatchId { get; set; }
         public int? MatchPlayerId { get; set; }
         public int EventTypeId { get; set; }
 

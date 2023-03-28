@@ -31,6 +31,7 @@ namespace AWWW_lab2_gr5.Data
                 .Entity<Comment>()
                 .HasOne(c => c.Article)
                 .WithMany(a => a.Comments)
+                .HasForeignKey(c => c.ArticleId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             // Author - Article relationship
@@ -38,6 +39,7 @@ namespace AWWW_lab2_gr5.Data
                 .Entity<Article>()
                 .HasOne(a => a.Author)
                 .WithMany(au => au.Articles)
+                .HasForeignKey(a => a.AuthorId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // Category - Article relationship
@@ -45,6 +47,7 @@ namespace AWWW_lab2_gr5.Data
                 .Entity<Article>()
                 .HasOne(a => a.Category)
                 .WithMany(c => c.Aricles)
+                .HasForeignKey(a => a.CategoryId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // Tag - Article relationship
@@ -59,6 +62,7 @@ namespace AWWW_lab2_gr5.Data
                 .Entity<Article>()
                 .HasOne(a => a.Match)
                 .WithMany(m => m.Articles)
+                .HasForeignKey(a => a.MatchId)
                 .OnDelete(DeleteBehavior.SetNull)
                 .IsRequired(false);
 
@@ -82,6 +86,7 @@ namespace AWWW_lab2_gr5.Data
                 .Entity<Team>()
                 .HasOne(t => t.League)
                 .WithMany(l => l.Teams)
+                .HasForeignKey(t => t.LeagueId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // Team - Player relationship
@@ -89,6 +94,7 @@ namespace AWWW_lab2_gr5.Data
                 .Entity<Player>()
                 .HasOne(p => p.Team)
                 .WithMany(t => t.Players)
+                .HasForeignKey(p => p.TeamId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // Match - MatchEvent relationship
@@ -96,6 +102,7 @@ namespace AWWW_lab2_gr5.Data
                 .Entity<MatchEvent>()
                 .HasOne(me => me.Match)
                 .WithMany(m => m.MatchEvents)
+                .HasForeignKey(me=> me.MatchId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // Match - MatchPlayer relationship
@@ -103,6 +110,7 @@ namespace AWWW_lab2_gr5.Data
                 .Entity<MatchPlayer>()
                 .HasOne(mp => mp.Match)
                 .WithMany(m => m.MatchPlayers)
+                .HasForeignKey(mp => mp.MatchId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // MatchPlayer - MatchEvent relationship
@@ -110,6 +118,7 @@ namespace AWWW_lab2_gr5.Data
                 .Entity<MatchEvent>()
                 .HasOne(me => me.MatchPlayer)
                 .WithMany(mp => mp.MatchEvents)
+                .HasForeignKey(me => me.MatchPlayerId)
                 .OnDelete(DeleteBehavior.SetNull)
                 .IsRequired(false);
 
@@ -118,6 +127,7 @@ namespace AWWW_lab2_gr5.Data
                 .Entity<MatchEvent>()
                 .HasOne(me => me.EventType)
                 .WithMany(et => et.MatchEvents)
+                .HasForeignKey(me => me.EventTypeId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // MatchPlayer - Position relationship
@@ -125,6 +135,7 @@ namespace AWWW_lab2_gr5.Data
                 .Entity<MatchPlayer>()
                 .HasOne(mp => mp.Position)
                 .WithMany(p => p.MatchPlayers)
+                .HasForeignKey(mp => mp.PositionId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // MatchPlayer - Player relationship
@@ -132,6 +143,7 @@ namespace AWWW_lab2_gr5.Data
                 .Entity<MatchPlayer>()
                 .HasOne(mp => mp.Player)
                 .WithMany(p => p.MatchPlayers)
+                .HasForeignKey(mp => mp.PlayerId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // Position - Player relationship
