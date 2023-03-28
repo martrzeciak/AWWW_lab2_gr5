@@ -1,0 +1,22 @@
+﻿@model Author
+
+<form method="post">
+    <input asp-for="Id" hidden/>
+    <div>
+        <div>
+            <h2>Delete author</h2>
+        </div>
+        <div class="mb-2">
+            <label asp-for="FirstName"></label>
+            <input asp-for="FirstName" disabled class="form-control"/>
+        </div>
+        <div class="mb-4">
+            <label asp-for="LastName"></label>
+            <input asp-for="LastName" disabled class="form-control" />
+        </div>
+        <div class="text-end">
+            <button type="submit" class="btn btn-danger" style="width:100px">Update</button>
+            <a asp-controller="Author" asp-action="Index" class="btn btn-secondary" style="width:100px">Back</a>
+        </div>        
+    </div>
+</form>
