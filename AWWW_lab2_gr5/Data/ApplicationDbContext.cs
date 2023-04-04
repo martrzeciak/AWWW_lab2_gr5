@@ -63,7 +63,6 @@ namespace AWWW_lab2_gr5.Data
                 .HasOne(a => a.Match)
                 .WithMany(m => m.Articles)
                 .HasForeignKey(a => a.MatchId)
-                p
                 .IsRequired(false);
 
             // Match - Team relationship
