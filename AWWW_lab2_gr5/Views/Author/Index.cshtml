@@ -17,8 +17,8 @@
 <table class="table table-bordered table-striped align-middle" style="width:100%">
     <thead>
         <tr>
-            <th>First name</th>
-            <th>Last name</th>
+            <th>@Html.DisplayNameFor(Model => Model.FirstName)</th>
+            <th>@Html.DisplayNameFor(Model => Model.LastName)</th>
             <th>Edit/Delete</th>
         </tr>
     </thead>
@@ -33,7 +33,7 @@
                         <a asp-controller="Author" asp-action="Edit" asp-route-id="@obj.Id"
                         class="btn btn-dark">Edit</a>
                         <a asp-controller="Author" asp-action="Delete" asp-route-id="@obj.Id"
-                           class="btn btn-danger">Delete</a>
+                        class="btn btn-danger">Delete</a>
                     </div>
                 </td>
             </tr>
