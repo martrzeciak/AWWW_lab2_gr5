@@ -6,16 +6,16 @@ namespace AWWW_lab2_gr5.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext _context;
 
-        public CategoryController(ApplicationDbContext db)
+        public CategoryController(ApplicationDbContext context)
         {
-            _db = db;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-           IEnumerable<Category> objCategoryList = _db.Categories;
+           IEnumerable<Category> objCategoryList = _context.Categories;
            return View(objCategoryList);
            
         }
@@ -28,11 +28,11 @@ namespace AWWW_lab2_gr5.Controllers
 
         // POST
         [HttpPost]
-        [ValidateAntiForgeryToken] // Prevent Cross-site request forgery
+        [ValidateAntiForgeryToken]
         public IActionResult Create(Category obj)
         {
-            _db.Categories.Add(obj);
-            _db.SaveChanges();
+            _context.Categories.Add(obj);
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
     }

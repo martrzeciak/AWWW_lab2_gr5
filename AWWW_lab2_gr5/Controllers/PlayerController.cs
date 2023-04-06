@@ -3,7 +3,6 @@ using AWWW_lab2_gr5.Data;
 using AWWW_lab2_gr5.Models;
 using AWWW_lab2_gr5.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata.Ecma335;
 
 namespace AWWW_lab2_gr5.Controllers
 {
@@ -33,7 +32,6 @@ namespace AWWW_lab2_gr5.Controllers
                     .Single();
                 viewModel.Positions = player.PlayerPosition.Select(s => s.Position);
             }
-
 
             return View(viewModel);
         }

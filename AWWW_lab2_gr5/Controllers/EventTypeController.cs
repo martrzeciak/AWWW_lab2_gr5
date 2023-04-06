@@ -6,16 +6,16 @@ namespace AWWW_lab2_gr5.Controllers
 {
     public class EventTypeController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext _context;
 
-        public EventTypeController(ApplicationDbContext db)
+        public EventTypeController(ApplicationDbContext context)
         {
-            _db = db;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<EventType> objEventTypeList = _db.EventTypes;
+            IEnumerable<EventType> objEventTypeList = _context.EventTypes;
             return View(objEventTypeList);
         }
 
@@ -27,11 +27,11 @@ namespace AWWW_lab2_gr5.Controllers
 
         // POST
         [HttpPost]
-        [ValidateAntiForgeryToken] // Prevent Cross-site request forgery
+        [ValidateAntiForgeryToken]
         public IActionResult Create(EventType obj)
         {
-            _db.EventTypes.Add(obj);
-            _db.SaveChanges();
+            _context.EventTypes.Add(obj);
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
     }

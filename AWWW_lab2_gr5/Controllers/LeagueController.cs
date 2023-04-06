@@ -6,16 +6,16 @@ namespace AWWW_lab2_gr5.Controllers
 {
     public class LeagueController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext _context;
 
-        public LeagueController(ApplicationDbContext db)
+        public LeagueController(ApplicationDbContext context)
         {
-            _db = db;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<League> objLeagueList = _db.Leagues;
+            IEnumerable<League> objLeagueList = _context.Leagues;
             return View(objLeagueList);
         }
         
@@ -30,8 +30,8 @@ namespace AWWW_lab2_gr5.Controllers
         [ValidateAntiForgeryToken] // Prevent Cross-site request forgery
         public IActionResult Create(League obj)
         {
-            _db.Leagues.Add(obj);
-            _db.SaveChanges();
+            _context.Leagues.Add(obj);
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
     }

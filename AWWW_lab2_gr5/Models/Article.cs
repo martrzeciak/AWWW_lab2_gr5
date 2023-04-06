@@ -8,16 +8,19 @@
         public string Content { get; set; }
         public DateTime CreationTime { get; set; } = DateTime.Now;
 
-        // Foreign keys
-        public int AuthorId { get; set; }
-        public int CategoryId { get; set; }
-        public int? MatchId { get; set; }
 
-        // Navigation properties
+        public int AuthorId { get; set; }
         public Author Author { get; set; }
+
+        public int CategoryId { get; set; }
         public Category Category { get; set; }
+
+        public int? MatchId { get; set; }
         public Match Match { get; set; }
+
+
         public IList<Comment> Comments { get; set; }
+
         public IList<Tag> Tags { get; set; }
     }
 }

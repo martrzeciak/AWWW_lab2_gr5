@@ -10,7 +10,6 @@ namespace AWWW_lab2_gr5.Models
         [DisplayName("Last Name")]
         public string LastName { get; set; }
 
-        // Navigation property
         public IList<Article> Articles { get; set; } 
     }
 }

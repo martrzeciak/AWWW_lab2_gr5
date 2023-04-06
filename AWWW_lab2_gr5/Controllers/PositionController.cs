@@ -6,16 +6,16 @@ namespace AWWW_lab2_gr5.Controllers
 {
     public class PositionController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext _context;
 
-        public PositionController(ApplicationDbContext db)
+        public PositionController(ApplicationDbContext context)
         {
-            _db = db;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Position> objPositionList = _db.Positions;
+            IEnumerable<Position> objPositionList = _context.Positions;
             return View(objPositionList);
         }
 
@@ -30,8 +30,8 @@ namespace AWWW_lab2_gr5.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Position obj)
         {
-            _db.Positions.Add(obj);
-            _db.SaveChanges();
+            _context.Positions.Add(obj);
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -43,7 +43,7 @@ namespace AWWW_lab2_gr5.Controllers
                 return NotFound();
             }
 
-            var positionFromDb = _db.Positions.FirstOrDefault(a => a.Id == id);
+            var positionFromDb = _context.Positions.FirstOrDefault(a => a.Id == id);
 
             if (positionFromDb == null)
             {
@@ -57,8 +57,8 @@ namespace AWWW_lab2_gr5.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Position obj)
         {
-            _db.Positions.Update(obj);
-            _db.SaveChanges();
+            _context.Positions.Update(obj);
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -70,7 +70,7 @@ namespace AWWW_lab2_gr5.Controllers
                 return NotFound();
             }
 
-            var positionFromDb = _db.Positions.FirstOrDefault(a => a.Id == id);
+            var positionFromDb = _context.Positions.FirstOrDefault(a => a.Id == id);
 
             if (positionFromDb == null)
             {
@@ -84,14 +84,14 @@ namespace AWWW_lab2_gr5.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePOST(int? id)
         {
-            var positionFromDb = _db.Positions.FirstOrDefault(x => x.Id == id);
+            var positionFromDb = _context.Positions.FirstOrDefault(x => x.Id == id);
             if (positionFromDb == null)
             {
                 return NotFound();
             }
 
-            _db.Positions.Remove(positionFromDb);
-            _db.SaveChanges();
+            _context.Positions.Remove(positionFromDb);
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
     }

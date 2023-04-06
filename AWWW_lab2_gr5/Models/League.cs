@@ -7,7 +7,6 @@
         public string Country { get; set; }
         public int Level { get; set; }
 
-        // Navigation property
         public IList<Team> Teams { get; set; }
     }
 }

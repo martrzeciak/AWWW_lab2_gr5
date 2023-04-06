@@ -149,13 +149,6 @@ namespace AWWW_lab2_gr5.Data
             // Position - Player relationship
             modelBuilder.Entity<PlayerPosition>()
                 .HasKey(p => new { p.PlayerId, p.PositionId });
-            //modelBuilder
-            //    .Entity<Position>()
-            //    .HasMany(po => po.Players)
-            //    .WithMany(pl => pl.Positions)
-            //    .UsingEntity<PlayerPosition>();
-
-
         }
     }
 }

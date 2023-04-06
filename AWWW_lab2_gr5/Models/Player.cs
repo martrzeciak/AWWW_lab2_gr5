@@ -14,7 +14,7 @@
 
         // Navigation property
         public Team Team { get; set; }
-        public List<PlayerPosition> PlayerPosition { get; }
+        public List<PlayerPosition> PlayerPosition { get; } = new();
         public IList<MatchPlayer> MatchPlayers { get; set; }
     }
 }

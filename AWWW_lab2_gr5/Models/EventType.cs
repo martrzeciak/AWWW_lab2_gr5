@@ -5,7 +5,6 @@
         public int Id { get; set; }
         public string Name { get; set; }
 
-        // Navigation property
         public IList<MatchEvent> MatchEvents{ get; set; }
     }
 }

@@ -2,15 +2,12 @@
 {
     public class Comment
     {
-        // Primary key
         public int Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
 
-        // Foreign key
-        public int ArticleId { get; set; }
 
-        // Navigation property
+        public int ArticleId { get; set; }
         public Article Article { get; set; }
     }
 }

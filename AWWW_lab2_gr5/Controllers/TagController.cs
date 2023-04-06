@@ -6,16 +6,16 @@ namespace AWWW_lab2_gr5.Controllers
 {
     public class TagController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext _context;
 
-        public TagController(ApplicationDbContext db)
+        public TagController(ApplicationDbContext context)
         {
-            _db = db;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Tag> objTagList = _db.Tags;
+            IEnumerable<Tag> objTagList = _context.Tags;
             return View(objTagList);
         }
 
@@ -30,8 +30,8 @@ namespace AWWW_lab2_gr5.Controllers
         [ValidateAntiForgeryToken] // Prevent Cross-site request forgery
         public IActionResult Create(Tag obj)
         {
-            _db.Tags.Add(obj);
-            _db.SaveChanges();
+            _context.Tags.Add(obj);
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
     }
