@@ -14,10 +14,11 @@
     </div>
 </div>
 
-<table class="table table-bordered table-striped" style="width:100%">
+<table class="table table-bordered table-striped align-middle" style="width:100%">
     <thead>
         <tr>
             <th>@Html.DisplayNameFor(Model => Model.Name)</th>
+            <th>Edit/Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -25,6 +26,14 @@
         {
                 <tr>
                     <td>@obj.Name</td>
+                    <td class="col-2">
+                        <div>
+                            <a asp-controller="Position" asp-action="Edit" asp-route-id="@obj.Id"
+                               class="btn btn-dark">Edit</a>
+                            <a asp-controller="Position" asp-action="Delete" asp-route-id="@obj.Id"
+                               class="btn btn-danger">Delete</a>
+                        </div>
+                    </td>
                 </tr>
         }
     </tbody>

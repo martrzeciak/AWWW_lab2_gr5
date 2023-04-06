@@ -18,6 +18,7 @@ namespace AWWW_lab2_gr5.Data
         public DbSet<Position> Positions { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Team> Teams { get; set; }
+        public DbSet<PlayerPosition> PlayerPositions { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -146,11 +147,15 @@ namespace AWWW_lab2_gr5.Data
                 .OnDelete(DeleteBehavior.Restrict);
 
             // Position - Player relationship
-            modelBuilder
-                .Entity<Position>()
-                .HasMany(po => po.Players)
-                .WithMany(pl => pl.Positions)
-                .UsingEntity(j => j.ToTable("PositionPlayer"));
+            modelBuilder.Entity<PlayerPosition>()
+                .HasKey(p => new { p.PlayerId, p.PositionId });
+            //modelBuilder
+            //    .Entity<Position>()
+            //    .HasMany(po => po.Players)
+            //    .WithMany(pl => pl.Positions)
+            //    .UsingEntity<PlayerPosition>();
+
+
         }
     }
 }

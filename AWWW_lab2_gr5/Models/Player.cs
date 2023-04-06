@@ -10,11 +10,11 @@
 
         // Foreign keys
         public int TeamId { get; set; }
-        public int PositionId { get; set; }
+
 
         // Navigation property
         public Team Team { get; set; }
-        public IList<Position> Positions { get; set; }
+        public List<PlayerPosition> PlayerPosition { get; }
         public IList<MatchPlayer> MatchPlayers { get; set; }
     }
 }

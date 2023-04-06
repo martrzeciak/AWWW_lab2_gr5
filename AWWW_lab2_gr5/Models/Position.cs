@@ -1,4 +1,6 @@
-﻿namespace AWWW_lab2_gr5.Models
+﻿using Microsoft.VisualBasic;
+
+namespace AWWW_lab2_gr5.Models
 {
     public class Position
     {
@@ -7,6 +9,6 @@
 
         // Navigation properties
         public IList<MatchPlayer> MatchPlayers { get; set; }
-        public IList<Player> Players { get; set; }
+        public List<PlayerPosition> PlayerPositions { get; }
     }
 }

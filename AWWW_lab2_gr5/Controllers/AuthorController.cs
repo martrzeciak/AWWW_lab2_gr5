@@ -47,7 +47,7 @@ namespace AWWW_lab2_gr5.Controllers
 
             var authorFromDb = _db.Authors.FirstOrDefault(a => a.Id == id);
 
-            if (authorFromDb == null || authorFromDb.Id == 0) 
+            if (authorFromDb == null) 
             {
                 return NotFound();
             }
@@ -86,15 +86,16 @@ namespace AWWW_lab2_gr5.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePOST(int? id)
         {
-            var obj = _db.Authors.FirstOrDefault(x => x.Id == id);
-            if (obj == null)
+            var authorFromDb = _db.Authors.FirstOrDefault(x => x.Id == id);
+            if (authorFromDb == null)
             {
                 return NotFound();
             }
 
-            _db.Authors.Remove(obj);
+            _db.Authors.Remove(authorFromDb);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+
     }
 }

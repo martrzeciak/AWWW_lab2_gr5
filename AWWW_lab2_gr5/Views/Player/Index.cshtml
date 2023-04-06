@@ -1,0 +1,80 @@
+﻿@model AWWW_lab2_gr5.Models.ViewModels.PlayerPositionData;
+@{
+    ViewData["Title"] = " Players";
+}
+
+<div>
+    <div class="row">
+        <div class="col-6">
+            <h1>Author list</h1>
+        </div>
+        <div class="col-6 text-end pt-0">
+            <a asp-controller="Player" asp-action="Create" class="btn btn-dark">Add new author</a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped align-middle" style="width:100%">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Country</th>
+            <th>Birth Date</th>
+            <th>Team</th>
+            <th>Positions</th>
+            <th>Edit/Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Players)
+        {
+            string selectedRow = "";
+            if (item.Id == (int?)ViewData["PlayerId"])
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Country)</td>
+                <td>@Html.DisplayFor(modelItem => item.BirthDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.Team.Name)</td>
+                <td>
+                   @foreach (var position in item.PlayerPosition)
+                    {
+                        @position.Position.Name <br />
+                    }
+                </td>
+                <td class="col-3">
+                    <div>
+                        <a asp-controller="Player" asp-action="Index" asp-route-id="@item.Id"
+                           class="btn btn-dark">Select</a>
+                        <a asp-controller="Player" asp-action="Edit" asp-route-id="@item.Id"
+                           class="btn btn-dark">Edit</a>
+                        <a asp-controller="Player" asp-action="Delete" asp-route-id="@item.Id"
+                           class="btn btn-danger">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model.Positions != null)
+{
+    <h3>Player positons:</h3>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+        </tr>
+        @foreach (var item in Model.Positions)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+            </tr>
+        }
+    </table>
+}

@@ -4,6 +4,7 @@ using AWWW_lab2_gr5.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AWWW_lab2_gr5.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230406200603_ChangePositionPlayerRelationship")]
+    partial class ChangePositionPlayerRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,7 +65,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasIndex("MatchId");
 
-                    b.ToTable("Articles", (string)null);
+                    b.ToTable("Articles");
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.Author", b =>
@@ -83,7 +86,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors", (string)null);
+                    b.ToTable("Authors");
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.Category", b =>
@@ -100,7 +103,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.Comment", b =>
@@ -126,7 +129,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasIndex("ArticleId");
 
-                    b.ToTable("Comments", (string)null);
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.EventType", b =>
@@ -143,7 +146,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EventTypes", (string)null);
+                    b.ToTable("EventTypes");
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.League", b =>
@@ -167,7 +170,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Leagues", (string)null);
+                    b.ToTable("Leagues");
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.Match", b =>
@@ -197,7 +200,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasIndex("HomeTeamId");
 
-                    b.ToTable("Matches", (string)null);
+                    b.ToTable("Matches");
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.MatchEvent", b =>
@@ -229,7 +232,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasIndex("MatchPlayerId");
 
-                    b.ToTable("MatchEvents", (string)null);
+                    b.ToTable("MatchEvents");
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.MatchPlayer", b =>
@@ -257,7 +260,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasIndex("PositionId");
 
-                    b.ToTable("MatchPlayers", (string)null);
+                    b.ToTable("MatchPlayers");
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.Player", b =>
@@ -290,7 +293,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasIndex("TeamId");
 
-                    b.ToTable("Players", (string)null);
+                    b.ToTable("Players");
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.PlayerPosition", b =>
@@ -305,7 +308,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasIndex("PositionId");
 
-                    b.ToTable("PlayerPositions", (string)null);
+                    b.ToTable("PlayerPositions");
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.Position", b =>
@@ -322,7 +325,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Positions", (string)null);
+                    b.ToTable("Positions");
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.Tag", b =>
@@ -339,7 +342,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags", (string)null);
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.Team", b =>
@@ -372,7 +375,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasIndex("LeagueId");
 
-                    b.ToTable("Teams", (string)null);
+                    b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("ArticleTag", b =>
