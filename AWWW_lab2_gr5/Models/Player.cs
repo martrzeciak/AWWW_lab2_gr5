@@ -1,4 +1,6 @@
-﻿namespace AWWW_lab2_gr5.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace AWWW_lab2_gr5.Models
 {
     public class Player
     {
@@ -6,15 +8,15 @@
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Country { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime BirthDate { get; set; }
 
-        // Foreign keys
         public int TeamId { get; set; }
+        public Team Team { get; set; } = null!;
 
-
-        // Navigation property
-        public Team Team { get; set; }
         public List<PlayerPosition> PlayerPosition { get; } = new();
+
         public IList<MatchPlayer> MatchPlayers { get; set; }
     }
 }

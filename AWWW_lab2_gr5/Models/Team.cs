@@ -14,6 +14,6 @@
         public IList<Match> HomeMatches { get; set; }
         public IList<Match> AwayMatches { get; set; }
 
-        public IList<Player> Players { get; set; }
+        public ICollection<Player> Players { get; } = new List<Player>(); 
     }
 }
