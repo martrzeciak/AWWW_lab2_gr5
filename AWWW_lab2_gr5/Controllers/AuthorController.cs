@@ -82,7 +82,7 @@ namespace AWWW_lab2_gr5.Controllers
         // POST
         [HttpPost,ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeletePOST(int? id)
+        public IActionResult DeleteConfirmed(int? id)
         {
             var authorFromDb = _context.Authors.FirstOrDefault(x => x.Id == id);
             if (authorFromDb == null)

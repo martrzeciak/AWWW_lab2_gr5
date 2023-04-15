@@ -7,6 +7,6 @@ namespace AWWW_lab2_gr5.Models
         public string Name { get; set; }
 
         public IList<MatchPlayer> MatchPlayers { get; set; }
-        public List<PlayerPosition> PlayerPositions { get; } = new();
+        public ICollection<Player> Players { get; set; } = new List<Player>();
     }
 }

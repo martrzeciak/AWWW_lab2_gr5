@@ -1,37 +1,55 @@
-﻿@model AWWW_lab2_gr5.Models.Player;
+﻿@model AWWW_lab2_gr5.Models.ViewModels.PlayerAssignedData
 
 <form method="post">
-    <input asp-for="Id" hidden/>
+    <input asp-for="Player.Id" hidden />
     <div>
         <div>
             <h2>Edit player</h2>
         </div>
         <div class="mb-2">
-            <label asp-for="FirstName"></label>
-            <input asp-for="FirstName" class="form-control" />
-            <span asp-validation-for="FirstName" class="text-danger"></span>
+            <label asp-for="Player.FirstName"></label>
+            <input asp-for="Player.FirstName" class="form-control" />
+            <span asp-validation-for="Player.FirstName" class="text-danger"></span>
         </div>
         <div class="mb-2">
-            <label asp-for="LastName"></label>
-            <input asp-for="LastName" class="form-control" />
-            <span asp-validation-for="LastName" class="text-danger"></span>
+            <label asp-for="Player.LastName"></label>
+            <input asp-for="Player.LastName" class="form-control" />
+            <span asp-validation-for="Player.LastName" class="text-danger"></span>
         </div>
         <div class="mb-2">
-            <label asp-for="Country"></label>
-            <input asp-for="Country" class="form-control" />
-            <span asp-validation-for="Country" class="text-danger"></span>
+            <label asp-for="Player.Country"></label>
+            <input asp-for="Player.Country" class="form-control" />
+            <span asp-validation-for="Player.Country" class="text-danger"></span>
         </div>
         <div class="mb-2">
-            <label asp-for="BirthDate"></label>
-            <input asp-for="BirthDate" class="form-control" />
-            <span asp-validation-for="BirthDate" class="text-danger"></span>
+            <label asp-for="Player.BirthDate"></label>
+            <input asp-for="Player.BirthDate" class="form-control" />
+            <span asp-validation-for="Player.BirthDate" class="text-danger"></span>
         </div>
-        <div class="mb-4 form-group">
-            <label asp-for="Team" class="control-label"></label>
-            <select asp-for="TeamId" class="form-select" asp-items="ViewBag.TeamId">
+        <div class="mb-2 form-group">
+            <label asp-for="Player.Team" class="control-label"></label>
+            @Html.DropDownListFor(m => m.Player.TeamId, Model.TeamList, new { @class = "form-select" })
+           @* <select asp-for="Player.TeamId" class="form-select" asp-items="Model.TeamList">
                 <option value="">-- Select Team --</option>
             </select>
-            <span asp-validation-for="TeamId" class="text-danger"></span>
+            <span asp-validation-for="Player.TeamId" class="text-danger"></span>*@
+        </div>
+        <div class="mb-4 form-group">
+            <b>Player position:</b>
+            <table>
+                @foreach (var position in Model.PositionList)
+                {
+                    <tr>
+                        <td>
+                            <input type="checkbox"
+                                   name="selectedPositions"
+                                   value="@position.Value"
+                                   @(position.Selected ? "checked" : "") />
+                            @position.Text
+                        </td>
+                    </tr>
+                }
+            </table>
         </div>
         <div class="text-end">
             <button type="submit" class="btn btn-dark" style="width:100px">Update</button>
