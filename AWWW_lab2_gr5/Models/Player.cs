@@ -17,10 +17,10 @@ namespace AWWW_lab2_gr5.Models
         public DateTime BirthDate { get; set; }
 
         public int TeamId { get; set; }
-        public Team Team { get; set; } = null!;
+        public virtual Team Team { get; set; } = null!;
 
-        public ICollection<Position> Positions { get; set; } = new List<Position>();
+        public virtual ICollection<Position> Positions { get; set; } = new List<Position>();
 
-        public IList<MatchPlayer> MatchPlayers { get;  }
+        public virtual ICollection<MatchPlayer> MatchPlayers { get; set; } = new List<MatchPlayer>();
     }
 }

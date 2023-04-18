@@ -40,7 +40,7 @@ namespace AWWW_lab2_gr5.Controllers
         {
             var viewModel = new PlayerAssignedData();
 
-            viewModel.TeamList = new SelectList(_context.Teams, "Id", "Name", "Select team");
+            viewModel.TeamList = new SelectList(_context.Teams, "Id", "Name");
             viewModel.PositionList = new MultiSelectList(_context.Positions, "Id", "Name");
 
             return View(viewModel);
@@ -50,19 +50,10 @@ namespace AWWW_lab2_gr5.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Player player, int[] selectedPositions)
         {
-            var playerPostions = _context.Positions.Where(p => selectedPositions.Contains(p.Id)).ToList();
-
-            player.Positions = new List<Position>();
-
             if (selectedPositions.Any())
             {
-                foreach (var p in playerPostions)
-                {
-                    if (p != null)
-                    {
-                        player.Positions.Add(p);
-                    }
-                }
+                var playerPostions = _context.Positions.Where(p => selectedPositions.Contains(p.Id)).ToList();
+                player.Positions = playerPostions;
             }
 
             _context.Players.Add(player);
@@ -111,16 +102,12 @@ namespace AWWW_lab2_gr5.Controllers
             playerToUpdate.BirthDate = viewModel.Player.BirthDate;
             playerToUpdate.TeamId = viewModel.Player.TeamId;
 
-            var playerPostions = _context.Positions.Where(p => selectedPositions.Contains(p.Id)).ToList();
-
             playerToUpdate.Positions.Clear();
 
-            if (playerPostions.Any())
+            if (selectedPositions.Any())
             {
-                foreach (var p in playerPostions)
-                {
-                    playerToUpdate.Positions.Add(p);
-                }
+                var playerPostions = _context.Positions.Where(p => selectedPositions.Contains(p.Id)).ToList();
+                playerToUpdate.Positions = playerPostions;
             }
 
             _context.Update(playerToUpdate);

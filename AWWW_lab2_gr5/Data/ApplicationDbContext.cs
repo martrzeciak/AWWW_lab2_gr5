@@ -18,7 +18,6 @@ namespace AWWW_lab2_gr5.Data
         public DbSet<Position> Positions { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Team> Teams { get; set; }
-        // public DbSet<PlayerPosition> PlayerPositions { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {

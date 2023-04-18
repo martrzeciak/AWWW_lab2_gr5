@@ -7,6 +7,6 @@
         public string Country { get; set; }
         public int Level { get; set; }
 
-        public IList<Team> Teams { get; set; }
+        public virtual ICollection<Team> Teams { get; set; } = new List<Team>();
     }
 }

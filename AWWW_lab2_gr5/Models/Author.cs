@@ -10,6 +10,6 @@ namespace AWWW_lab2_gr5.Models
         [DisplayName("Last Name")]
         public string LastName { get; set; }
 
-        public IList<Article> Articles { get; set; } 
+        public virtual ICollection<Article> Articles { get; set; } = new List<Article>();
     }
 }

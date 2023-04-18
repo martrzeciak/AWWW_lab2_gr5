@@ -9,11 +9,11 @@
         public DateTime FundationDate { get; set; }
 
         public int LeagueId { get; set; }
-        public League League { get; set; }
+        public virtual League League { get; set; }
 
-        public IList<Match> HomeMatches { get; set; }
-        public IList<Match> AwayMatches { get; set; }
+        public virtual ICollection<Match> HomeMatches { get; set; } = new List<Match>();
+        public virtual ICollection<Match> AwayMatches { get; set; } = new List<Match>();
 
-        public ICollection<Player> Players { get; } = new List<Player>(); 
+        public virtual ICollection<Player> Players { get; set; } = new List<Player>(); 
     }
 }

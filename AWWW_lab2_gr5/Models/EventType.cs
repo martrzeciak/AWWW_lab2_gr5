@@ -5,6 +5,6 @@
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public IList<MatchEvent> MatchEvents{ get; set; }
+        public virtual ICollection<MatchEvent> MatchEvents{ get; set; } = new List<MatchEvent>();
     }
 }

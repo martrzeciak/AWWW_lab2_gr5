@@ -6,7 +6,7 @@ namespace AWWW_lab2_gr5.Models
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public IList<MatchPlayer> MatchPlayers { get; set; }
-        public ICollection<Player> Players { get; set; } = new List<Player>();
+        public virtual ICollection<MatchPlayer> MatchPlayers { get; set; } = new List<MatchPlayer>();
+        public virtual ICollection<Player> Players { get; set; } = new List<Player>();
     }
 }

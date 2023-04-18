@@ -5,6 +5,6 @@
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public IList<Article> Artciles { get; set; }
+        public virtual ICollection<Article> Artciles { get; set; } = new List<Article>();
     }
 }

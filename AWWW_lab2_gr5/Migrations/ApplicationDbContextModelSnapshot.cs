@@ -62,7 +62,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasIndex("MatchId");
 
-                    b.ToTable("Articles");
+                    b.ToTable("Articles", (string)null);
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.Author", b =>
@@ -83,7 +83,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Authors", (string)null);
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.Category", b =>
@@ -100,7 +100,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.Comment", b =>
@@ -126,7 +126,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasIndex("ArticleId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.EventType", b =>
@@ -143,7 +143,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EventTypes");
+                    b.ToTable("EventTypes", (string)null);
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.League", b =>
@@ -167,7 +167,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Leagues");
+                    b.ToTable("Leagues", (string)null);
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.Match", b =>
@@ -197,7 +197,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasIndex("HomeTeamId");
 
-                    b.ToTable("Matches");
+                    b.ToTable("Matches", (string)null);
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.MatchEvent", b =>
@@ -229,7 +229,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasIndex("MatchPlayerId");
 
-                    b.ToTable("MatchEvents");
+                    b.ToTable("MatchEvents", (string)null);
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.MatchPlayer", b =>
@@ -257,7 +257,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasIndex("PositionId");
 
-                    b.ToTable("MatchPlayers");
+                    b.ToTable("MatchPlayers", (string)null);
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.Player", b =>
@@ -290,7 +290,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasIndex("TeamId");
 
-                    b.ToTable("Players");
+                    b.ToTable("Players", (string)null);
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.Position", b =>
@@ -307,7 +307,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Positions");
+                    b.ToTable("Positions", (string)null);
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.Tag", b =>
@@ -324,7 +324,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tags", (string)null);
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.Team", b =>
@@ -357,7 +357,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasIndex("LeagueId");
 
-                    b.ToTable("Teams");
+                    b.ToTable("Teams", (string)null);
                 });
 
             modelBuilder.Entity("ArticleTag", b =>
@@ -387,7 +387,7 @@ namespace AWWW_lab2_gr5.Migrations
 
                     b.HasIndex("PositionsId");
 
-                    b.ToTable("PlayerPosition");
+                    b.ToTable("PlayerPosition", (string)null);
                 });
 
             modelBuilder.Entity("AWWW_lab2_gr5.Models.Article", b =>
