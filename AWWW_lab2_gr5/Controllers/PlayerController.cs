@@ -125,8 +125,8 @@ namespace AWWW_lab2_gr5.Controllers
 
             var viewModel = new PlayerAssignedData();
             viewModel.Player = _context.Players
-                .Include(p => p.Team)
-                .Include(p => p.Positions)
+                //.Include(p => p.Team)
+                //.Include(p => p.Positions)
                 .First(p => p.Id == id);
 
             GetPlayerAssignedData(viewModel, viewModel.Player);

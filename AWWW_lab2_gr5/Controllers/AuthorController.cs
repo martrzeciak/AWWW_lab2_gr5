@@ -14,85 +14,79 @@ namespace AWWW_lab2_gr5.Controllers
 
         public IActionResult Index()
         {
-            var objAuthorList = _context.Authors.ToList();
+            var authorList = _context.Authors.ToList();
             //IEnumerable<Author> objAuthorList = _db.Authors;
-            return View(objAuthorList);
+            return View(authorList);
         }
 
-        // GET
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST
         [HttpPost]
         [ValidateAntiForgeryToken] // Prevent Cross-site request forgery
-        public IActionResult Create(Author obj)
+        public IActionResult Create(Author author)
         {
-            _context.Authors.Add(obj);
+            _context.Authors.Add(author);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET
         public IActionResult Edit(int? id)
         {
-            if(id == null || id == 0)
+            if(id == null)
             {
                 return NotFound();
             }
 
-            var authorFromDb = _context.Authors.FirstOrDefault(a => a.Id == id);
+            var author = _context.Authors.FirstOrDefault(a => a.Id == id);
 
-            if (authorFromDb == null) 
+            if (author == null) 
             {
                 return NotFound();
             }
-            return View(authorFromDb);
+            return View(author);
         }
 
-        // POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Author obj)
+        public IActionResult Edit(Author author)
         {
-            _context.Authors.Update(obj);
+            _context.Authors.Update(author);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET
         public IActionResult Delete(int? id)
         {
-            if (id == null || id == 0)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var authorFromDb = _context.Authors.FirstOrDefault(a => a.Id == id);
+            var author = _context.Authors.FirstOrDefault(a => a.Id == id);
 
-            if (authorFromDb == null)
+            if (author == null)
             {
                 return NotFound();
             }
-            return View(authorFromDb);
+            return View(author);
         }
 
-        // POST
         [HttpPost,ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int? id)
         {
-            var authorFromDb = _context.Authors.FirstOrDefault(x => x.Id == id);
-            if (authorFromDb == null)
+            var author = _context.Authors.FirstOrDefault(x => x.Id == id);
+            if (author == null)
             {
                 return NotFound();
             }
 
-            _context.Authors.Remove(authorFromDb);
+            _context.Authors.Remove(author);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
     }

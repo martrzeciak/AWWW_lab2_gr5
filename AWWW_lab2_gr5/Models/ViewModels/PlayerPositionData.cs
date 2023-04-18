@@ -2,7 +2,7 @@
 {
     public class PlayerPositionData
     {
-        public IEnumerable<Player> Players { get; set; }
-        public IEnumerable<Position> Positions { get; set; }
+        public ICollection<Player> Players { get; set; }
+        public ICollection<Position> Positions { get; set; }
     }
 }
