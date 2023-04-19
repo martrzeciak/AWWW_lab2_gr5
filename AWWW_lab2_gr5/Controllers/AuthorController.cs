@@ -79,6 +79,7 @@ namespace AWWW_lab2_gr5.Controllers
         public IActionResult DeleteConfirmed(int? id)
         {
             var author = _context.Authors.FirstOrDefault(x => x.Id == id);
+
             if (author == null)
             {
                 return NotFound();

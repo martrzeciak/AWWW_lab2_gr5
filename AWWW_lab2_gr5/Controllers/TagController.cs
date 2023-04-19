@@ -19,13 +19,11 @@ namespace AWWW_lab2_gr5.Controllers
             return View(objTagList);
         }
 
-        // GET
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST
         [HttpPost]
         [ValidateAntiForgeryToken] // Prevent Cross-site request forgery
         public IActionResult Create(Tag obj)
@@ -33,6 +31,67 @@ namespace AWWW_lab2_gr5.Controllers
             _context.Tags.Add(obj);
             _context.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var tag = _context.Tags.FirstOrDefault(t => t.Id == id);
+
+            if (tag == null)
+            {
+                return NotFound();
+            }
+
+            return View(tag);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Tag tag)
+        {
+            _context.Update(tag);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var tag = _context.Tags.FirstOrDefault(t => t.Id == id);
+
+            if (tag == null)
+            {
+                return NotFound();
+            }
+
+            return View(tag);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+            var tag = _context.Tags.FirstOrDefault(t => t.Id == id);
+
+            if (tag == null)
+            {
+                return NotFound();
+            }
+
+            _context.Remove(tag);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
