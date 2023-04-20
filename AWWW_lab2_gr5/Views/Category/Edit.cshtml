@@ -4,18 +4,15 @@
     <div>
         <h2>Edit category</h2>
     </div>
-
     <div class="mb-4">
         <label asp-for="Name"></label>
         <input asp-for="Name" class="form-control"/>
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
-
     <div class="text-end">
         <button type="submit" class="btn btn-dark" style="width:100px">Update</button>
         <a asp-controller="Category" asp-action="Index" class="btn btn-secondary" style="width:100px">Back</a>
     </div>
-
 </form>
 
 @section Scripts{

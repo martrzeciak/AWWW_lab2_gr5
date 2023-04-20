@@ -18,21 +18,85 @@ namespace AWWW_lab2_gr5.Controllers
             IEnumerable<League> objLeagueList = _context.Leagues;
             return View(objLeagueList);
         }
-        
-        // GET
-        public IActionResult Create() 
+
+        public IActionResult Create()
         {
             return View();
         }
 
-        // POST
         [HttpPost]
-        [ValidateAntiForgeryToken] // Prevent Cross-site request forgery
+        [ValidateAntiForgeryToken]
         public IActionResult Create(League obj)
         {
             _context.Leagues.Add(obj);
             _context.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var league = _context.Leagues.FirstOrDefault(l => l.Id == id);
+
+            if (league == null)
+            {
+                return NotFound();
+            }
+
+            return View(league);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(League league)
+        {
+            if (league == null)
+            {
+                return NotFound();
+            }
+
+            _context.Leagues.Update(league);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var league = _context.Leagues.FirstOrDefault(l => l.Id == id);
+
+            if (league == null)
+            {
+                return NotFound();
+            }
+
+            return View(league);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int? id)
+        {
+            var league = _context.Leagues.FirstOrDefault(l => l.Id == id);
+
+            if (league == null)
+            {
+                return NotFound();
+            }
+
+            _context.Leagues.Remove(league);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
