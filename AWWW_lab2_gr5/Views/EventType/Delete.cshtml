@@ -1,0 +1,16 @@
+﻿@model EventType
+
+<form method="post">
+    <input asp-for="Id" hidden />
+    <div>
+        <h2>Delete event type</h2>
+    </div>
+    <div class="mb-4">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" disabled class="form-control"/>
+    </div>
+    <div class="text-end">
+        <button type="submit" class="btn btn-danger" style="width:100px">Delete</button>
+        <a asp-controller="EventType" asp-action="Index" class="btn btn-secondary" style="width:100px">Back</a>
+    </div>
+</form>

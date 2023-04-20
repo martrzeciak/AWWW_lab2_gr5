@@ -17,7 +17,7 @@
     <thead>
         <tr>
             <th>@Html.DisplayNameFor(Model => Model.Name)</th>
-            <th>Edit/Delete</th>
+            <th class="col-2">Edit/Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -25,7 +25,6 @@
         {
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                <td></td>
                 <td class="col-2">
                     <div>
                         <a asp-controller="Category" asp-action="Edit" asp-route-id="@item.Id"

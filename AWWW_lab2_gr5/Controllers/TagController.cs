@@ -15,8 +15,8 @@ namespace AWWW_lab2_gr5.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Tag> objTagList = _context.Tags;
-            return View(objTagList);
+            IEnumerable<Tag> tagList = _context.Tags;
+            return View(tagList);
         }
 
         public IActionResult Create()
@@ -25,7 +25,7 @@ namespace AWWW_lab2_gr5.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken] // Prevent Cross-site request forgery
+        [ValidateAntiForgeryToken]
         public IActionResult Create(Tag obj)
         {
             _context.Tags.Add(obj);
