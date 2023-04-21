@@ -18,6 +18,7 @@ namespace AWWW_lab2_gr5.Controllers
         {
             var authorList = await _context.Authors.ToListAsync();
             //IEnumerable<Author> objAuthorList = _db.Authors;
+
             return View(authorList);
         }
 

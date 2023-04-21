@@ -17,6 +17,7 @@ namespace AWWW_lab2_gr5.Controllers
         public async Task<IActionResult> Index()
         {
             var eventTypeList = await _context.EventTypes.ToListAsync();
+
             return View(eventTypeList);
         }
 
