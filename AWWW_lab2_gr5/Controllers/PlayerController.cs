@@ -16,12 +16,12 @@ namespace AWWW_lab2_gr5.Controllers
             _context = context;
         }
 
-        public IActionResult Index(int? id)
+        public async Task<IActionResult> Index(int? id)
         {
             var viewModel = new PlayerPositionData();
-            viewModel.Players = _context.Players
+            viewModel.Players = await _context.Players
                 .Include(p => p.Team)
-                .ToList();
+                .ToListAsync();
 
             if (id != null)
             {
@@ -29,40 +29,40 @@ namespace AWWW_lab2_gr5.Controllers
                     .Where(p => p.Id == id)
                     .Single();
 
-                _context.Entry(selectedPlayer).Collection(p => p.Positions).Load();
+                await _context.Entry(selectedPlayer).Collection(p => p.Positions).LoadAsync();
                 viewModel.Positions = selectedPlayer.Positions;
             }
 
             return View(viewModel);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             var viewModel = new PlayerAssignedData();
 
-            viewModel.TeamList = new SelectList(_context.Teams, "Id", "Name");
-            viewModel.PositionList = new MultiSelectList(_context.Positions, "Id", "Name");
+            viewModel.TeamList = new SelectList(await _context.Teams.ToListAsync(), "Id", "Name");
+            viewModel.PositionList = new MultiSelectList(await _context.Positions.ToListAsync(), "Id", "Name");
 
             return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Player player, int[] selectedPositions)
+        public async Task<IActionResult> Create(Player player, int[] selectedPositions)
         {
             if (selectedPositions.Any())
             {
-                var playerPostions = _context.Positions.Where(p => selectedPositions.Contains(p.Id)).ToList();
+                var playerPostions = await _context.Positions.Where(p => selectedPositions.Contains(p.Id)).ToListAsync();
                 player.Positions = playerPostions;
             }
 
             _context.Players.Add(player);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -71,25 +71,28 @@ namespace AWWW_lab2_gr5.Controllers
 
             var viewModel = new PlayerAssignedData();
 
-            viewModel.Player = _context.Players
+            viewModel.Player = await _context.Players
                 .Include(p => p.Positions)
-                .First(p => p.Id == id);
+                .FirstAsync(p => p.Id == id);
 
             if (viewModel.Player == null)
             {
                 return NotFound();
             }
 
-            GetPlayerAssignedData(viewModel, viewModel.Player);
+            await GetPlayerAssignedData(viewModel, viewModel.Player);
 
             return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(PlayerAssignedData viewModel, int[] selectedPositions)
+        public async Task<IActionResult> Edit(PlayerAssignedData viewModel, int[] selectedPositions)
         {
-            var playerToUpdate = _context.Players.Include(p => p.Positions).Where(p => p.Id == viewModel.Player.Id).Single();
+            var playerToUpdate = await _context.Players
+                .Include(p => p.Positions)
+                .Where(p => p.Id == viewModel.Player.Id)
+                .SingleOrDefaultAsync();
 
             if (playerToUpdate == null)
             {
@@ -106,17 +109,17 @@ namespace AWWW_lab2_gr5.Controllers
 
             if (selectedPositions.Any())
             {
-                var playerPostions = _context.Positions.Where(p => selectedPositions.Contains(p.Id)).ToList();
+                var playerPostions = await _context.Positions.Where(p => selectedPositions.Contains(p.Id)).ToListAsync();
                 playerToUpdate.Positions = playerPostions;
             }
 
             _context.Update(playerToUpdate);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -124,42 +127,42 @@ namespace AWWW_lab2_gr5.Controllers
             }
 
             var viewModel = new PlayerAssignedData();
-            viewModel.Player = _context.Players
+            viewModel.Player = await _context.Players
                 //.Include(p => p.Team)
                 //.Include(p => p.Positions)
-                .First(p => p.Id == id);
+                .FirstAsync(p => p.Id == id);
 
-            GetPlayerAssignedData(viewModel, viewModel.Player);
+            await GetPlayerAssignedData(viewModel, viewModel.Player);
 
             return View(viewModel);
         }
 
         [HttpPost, ActionName("Delete")]
-        public IActionResult DeleteConfirmed(int? id)
+        public async Task<IActionResult> DeleteConfirmed(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var selectedPlayer = _context.Players.First(p => p.Id == id);
+            var selectedPlayer = await _context.Players.FirstAsync(p => p.Id == id);
 
             _context.Players.Remove(selectedPlayer);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
         }
 
-        private void GetPlayerAssignedData(PlayerAssignedData viewModel, Player player)
+        private async Task GetPlayerAssignedData(PlayerAssignedData viewModel, Player player)
         {
-            viewModel.TeamList = new SelectList(_context.Teams, "Id", "Name", player.TeamId);
+            viewModel.TeamList = new SelectList(await _context.Teams.ToListAsync(), "Id", "Name", player.TeamId);
 
             var selectedPositons = _context.Positions
                 .Where(p => player.Positions.Contains(p))
                 .Select(p => p.Id)
                 .ToList();
 
-            viewModel.PositionList = new MultiSelectList(_context.Positions, "Id", "Name", selectedPositons);
+            viewModel.PositionList = new MultiSelectList(await _context.Positions.ToListAsync(), "Id", "Name", selectedPositons);
         }
     }
 }
