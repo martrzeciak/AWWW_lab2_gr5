@@ -1,6 +1,8 @@
 ﻿using AWWW_lab2_gr5.Data;
 using AWWW_lab2_gr5.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
 namespace AWWW_lab2_gr5.Controllers
 {
     public class AuthorController : Controller
@@ -12,9 +14,9 @@ namespace AWWW_lab2_gr5.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var authorList = _context.Authors.ToList();
+            var authorList = await _context.Authors.ToListAsync();
             //IEnumerable<Author> objAuthorList = _db.Authors;
             return View(authorList);
         }
@@ -26,59 +28,63 @@ namespace AWWW_lab2_gr5.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken] // Prevent Cross-site request forgery
-        public IActionResult Create(Author author)
+        public async Task<IActionResult> Create(Author author)
         {
             _context.Authors.Add(author);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Edit(int? id)
-        {
-            if(id == null)
-            {
-                return NotFound();
-            }
-
-            var author = _context.Authors.FirstOrDefault(a => a.Id == id);
-
-            if (author == null) 
-            {
-                return NotFound();
-            }
-            return View(author);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(Author author)
-        {
-            _context.Authors.Update(author);
-            _context.SaveChanges();
-            return RedirectToAction(nameof(Index));
-        }
-
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var author = _context.Authors.FirstOrDefault(a => a.Id == id);
+            var author = await _context.Authors.FirstOrDefaultAsync(a => a.Id == id);
+
+            if (author == null) 
+            {
+                return NotFound();
+            }
+
+            return View(author);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Author author)
+        {
+            _context.Authors.Update(author);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var author = await _context.Authors.FirstOrDefaultAsync(a => a.Id == id);
 
             if (author == null)
             {
                 return NotFound();
             }
+
             return View(author);
         }
 
         [HttpPost,ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int? id)
+        public async Task<IActionResult> DeleteConfirmed(int? id)
         {
-            var author = _context.Authors.FirstOrDefault(x => x.Id == id);
+            var author = await _context.Authors.FirstOrDefaultAsync(x => x.Id == id);
 
             if (author == null)
             {
@@ -86,7 +92,8 @@ namespace AWWW_lab2_gr5.Controllers
             }
 
             _context.Authors.Remove(author);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 

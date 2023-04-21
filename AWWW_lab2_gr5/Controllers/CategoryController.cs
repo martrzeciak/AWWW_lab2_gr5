@@ -31,6 +31,7 @@ namespace AWWW_lab2_gr5.Controllers
         {
             _context.Categories.Add(obj);
             _context.SaveChanges();
+
             return RedirectToAction(nameof(Index));
         }
 
