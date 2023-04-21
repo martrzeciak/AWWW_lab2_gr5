@@ -1,6 +1,7 @@
 ﻿using AWWW_lab2_gr5.Data;
 using AWWW_lab2_gr5.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AWWW_lab2_gr5.Controllers
 {
@@ -13,9 +14,9 @@ namespace AWWW_lab2_gr5.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            IEnumerable<EventType> eventTypeList = _context.EventTypes;
+            var eventTypeList = await _context.EventTypes.ToListAsync();
             return View(eventTypeList);
         }
 
@@ -26,21 +27,21 @@ namespace AWWW_lab2_gr5.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(EventType obj)
+        public async Task<IActionResult> Create(EventType obj)
         {
             _context.EventTypes.Add(obj);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var eventType = _context.EventTypes.FirstOrDefault(e => e.Id == id);
+            var eventType = await _context.EventTypes.FirstOrDefaultAsync(e => e.Id == id);
 
             if (eventType == null)
             {
@@ -52,7 +53,7 @@ namespace AWWW_lab2_gr5.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(EventType eventType)
+        public async Task<IActionResult> Edit(EventType eventType)
         {
             if (eventType == null)
             {
@@ -60,16 +61,33 @@ namespace AWWW_lab2_gr5.Controllers
             }
 
             _context.EventTypes.Update(eventType);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var eventType = await _context.EventTypes.FirstOrDefaultAsync(e => e.Id == id);
+
+            if (eventType == null)
+            {
+                return NotFound();
+            }
+
+            return View(eventType);
+        }
+
         [HttpPost,ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int? id)
+        public async Task<IActionResult> DeleteConfirmed(int? id)
         {
-            var eventType = _context.EventTypes.FirstOrDefault(e => e.Id == id);
+            var eventType = await _context.EventTypes.FirstOrDefaultAsync(e => e.Id == id);
 
             if (eventType == null)
             {
@@ -77,7 +95,7 @@ namespace AWWW_lab2_gr5.Controllers
             }
 
             _context.EventTypes.Remove(eventType);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
         }
