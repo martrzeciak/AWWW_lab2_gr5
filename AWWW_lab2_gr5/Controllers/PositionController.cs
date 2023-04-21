@@ -49,6 +49,7 @@ namespace AWWW_lab2_gr5.Controllers
             {
                 return NotFound();
             }
+
             return View(position);
         }
 
@@ -84,6 +85,7 @@ namespace AWWW_lab2_gr5.Controllers
         public async Task<IActionResult> DeletePOST(int? id)
         {
             var position = await _context.Positions.FirstOrDefaultAsync(x => x.Id == id);
+
             if (position == null)
             {
                 return NotFound();
