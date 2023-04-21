@@ -1,6 +1,7 @@
 ﻿using AWWW_lab2_gr5.Data;
 using AWWW_lab2_gr5.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AWWW_lab2_gr5.Controllers
 {
@@ -13,86 +14,85 @@ namespace AWWW_lab2_gr5.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            IEnumerable<Position> objPositionList = _context.Positions;
-            return View(objPositionList);
+            var positionList = await _context.Positions.ToListAsync();
+
+            return View(positionList);
         }
 
-        // GET
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Position obj)
+        public async Task<IActionResult> Create(Position obj)
         {
             _context.Positions.Add(obj);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || id == 0)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var positionFromDb = _context.Positions.FirstOrDefault(a => a.Id == id);
+            var position = await _context.Positions.FirstOrDefaultAsync(a => a.Id == id);
 
-            if (positionFromDb == null)
+            if (position == null)
             {
                 return NotFound();
             }
-            return View(positionFromDb);
+            return View(position);
         }
 
-        // POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Position obj)
+        public async Task<IActionResult> Edit(Position player)
         {
-            _context.Positions.Update(obj);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
+            _context.Positions.Update(player);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || id == 0)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var positionFromDb = _context.Positions.FirstOrDefault(a => a.Id == id);
+            var position = await _context.Positions.FirstOrDefaultAsync(a => a.Id == id);
 
-            if (positionFromDb == null)
+            if (position == null)
             {
                 return NotFound();
             }
-            return View(positionFromDb);
+
+            return View(position);
         }
 
-        // POST
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeletePOST(int? id)
+        public async Task<IActionResult> DeletePOST(int? id)
         {
-            var positionFromDb = _context.Positions.FirstOrDefault(x => x.Id == id);
-            if (positionFromDb == null)
+            var position = await _context.Positions.FirstOrDefaultAsync(x => x.Id == id);
+            if (position == null)
             {
                 return NotFound();
             }
 
-            _context.Positions.Remove(positionFromDb);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
+            _context.Positions.Remove(position);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
