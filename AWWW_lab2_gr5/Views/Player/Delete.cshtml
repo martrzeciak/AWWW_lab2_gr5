@@ -1,46 +1,38 @@
-﻿@model AWWW_lab2_gr5.Models.ViewModels.PlayerAssignedData
+﻿@model Player
 
 <form method="post">
-    <input asp-for="Player.Id" hidden />
+    <input asp-for="Id" hidden />
     <div>
         <div>
             <h2>Delete player</h2>
         </div>
         <div class="mb-2">
-            <label asp-for="Player.FirstName"></label>
-            <input asp-for="Player.FirstName" disabled class="form-control" />
+            <label asp-for="FirstName"></label>
+            <input asp-for="FirstName" disabled class="form-control" />
         </div>
         <div class="mb-2">
-            <label asp-for="Player.LastName"></label>
-            <input asp-for="Player.LastName" disabled class="form-control" />
+            <label asp-for="LastName"></label>
+            <input asp-for="LastName" disabled class="form-control" />
         </div>
         <div class="mb-2">
-            <label asp-for="Player.Country"></label>
-            <input asp-for="Player.Country" disabled class="form-control" />
+            <label asp-for="Country"></label>
+            <input asp-for="Country" disabled class="form-control" />
         </div>
         <div class="mb-2">
-            <label asp-for="Player.BirthDate"></label>
-            <input asp-for="Player.BirthDate" disabled class="form-control" />
+            <label asp-for="BirthDate"></label>
+            <input asp-for="BirthDate" disabled class="form-control" />
         </div>
         <div class="mb-2">
-            <label asp-for="Player.Team.Name"></label>
-            @Html.DropDownListFor(m => m.Player.TeamId, Model.TeamList, new { @class = "form-select", disabled = "disabled" })
-        </div>
+            <label asp-for="Team.Name"></label>
+            <input asp-for="Team.Name" disabled class="form-select" />
         </div>
         <div class="mb-4 form-group">
             <b>Player position:</b>
             <table>
-                @foreach (var position in Model.PositionList)
+                @foreach (var position in Model.Positions)
                 {
                     <tr>
-                        <td>
-                            <input type="checkbox"
-                                name="selectedPositions"
-                                alue="@position.Value"
-                                @(position.Selected ? "checked" : "") 
-                                disabled />
-                            @position.Text
-                        </td>
+                        <td>@Html.DisplayFor(modelItem => position.Name)</td>
                     </tr>
                 }
             </table>

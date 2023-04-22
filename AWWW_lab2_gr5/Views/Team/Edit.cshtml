@@ -1,0 +1,41 @@
+﻿@model Team
+
+<form method="post">
+    <div>
+        <div>
+            <h2>Edit team</h2>
+        </div>
+        <div class="mb-2">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-2">
+            <label asp-for="Country"></label>
+            <input asp-for="Country" class="form-control" />
+            <span asp-validation-for="Country" class="text-danger"></span>
+        </div>
+        <div class="mb-2">
+            <label asp-for="City"></label>
+            <input asp-for="City" class="form-control" />
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+        <div class="mb-2">
+            <label asp-for="FundationDate"></label>
+            <input asp-for="FundationDate" class="form-control" />
+            <span asp-validation-for="FundationDate" class="text-danger"></span>
+        </div>
+        <div class="mb-4">
+            <label asp-for="League" class="control-label"></label>
+            @Html.DropDownListFor(l => l.LeagueId, ViewBag.LeagueList as SelectList, new { @class = "form-select" })
+        </div>
+        <div class="text-end">
+            <button type="submit" class="btn btn-dark" style="width:100px">Update</button>
+            <a asp-controller="Team" asp-action="Index" class="btn btn-secondary" style="width:100px">Back</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

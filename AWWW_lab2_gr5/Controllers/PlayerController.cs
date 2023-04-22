@@ -126,15 +126,27 @@ namespace AWWW_lab2_gr5.Controllers
                 return NotFound();
             }
 
-            var viewModel = new PlayerAssignedData();
-            viewModel.Player = await _context.Players
-                //.Include(p => p.Team)
-                //.Include(p => p.Positions)
-                .FirstAsync(p => p.Id == id);
+            //var viewModel = new PlayerAssignedData();
+            //viewModel.Player = await _context.Players
+            //    //.Include(p => p.Team)
+            //    .Include(p => p.Positions)
+            //    .FirstAsync(p => p.Id == id);
 
-            await GetPlayerAssignedData(viewModel, viewModel.Player);
+            //await GetPlayerAssignedData(viewModel, viewModel.Player);
 
-            return View(viewModel);
+            //return View(viewModel);
+
+            var player = await _context.Players
+                .Include(p => p.Team)
+                .Include(p => p.Positions)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (player == null)
+            {
+                return NotFound();
+            }
+
+            return View(player);
         }
 
         [HttpPost, ActionName("Delete")]
@@ -157,10 +169,10 @@ namespace AWWW_lab2_gr5.Controllers
         {
             viewModel.TeamList = new SelectList(await _context.Teams.ToListAsync(), "Id", "Name", player.TeamId);
 
-            var selectedPositons = _context.Positions
+            var selectedPositons = await _context.Positions
                 .Where(p => player.Positions.Contains(p))
                 .Select(p => p.Id)
-                .ToList();
+                .ToListAsync();
 
             viewModel.PositionList = new MultiSelectList(await _context.Positions.ToListAsync(), "Id", "Name", selectedPositons);
         }

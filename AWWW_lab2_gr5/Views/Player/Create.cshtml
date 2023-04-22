@@ -24,7 +24,7 @@
             <label asp-for="Player.BirthDate"></label>
             <input asp-for="Player.BirthDate" class="form-control" />
             <span asp-validation-for="Player.BirthDate" class="text-danger"></span>
-        </div
+        </div>
         <div class="mb-4 form-group">
             <label asp-for="Player.Team" class="control-label"></label>
             <select asp-for="Player.TeamId" class="form-select" asp-items="Model.TeamList">
@@ -40,9 +40,9 @@
                     <tr>
                         <td>
                             <input type="checkbox"
-                                   name="selectedPositions"
-                                   value="@position.Value"
-                            @(position.Selected ? "checked" : "") />
+                                name="selectedPositions"
+                                value="@position.Value"
+                                @(position.Selected ? "checked" : "") />
                             @position.Text
                         </td>
                     </tr>
