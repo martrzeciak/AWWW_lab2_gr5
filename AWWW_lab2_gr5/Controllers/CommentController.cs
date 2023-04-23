@@ -5,36 +5,37 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AWWW_lab2_gr5.Controllers
 {
-    public class AuthorController : Controller
+    public class CommentController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public AuthorController(ApplicationDbContext context)
+        public CommentController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         public async Task<IActionResult> Index()
         {
-            var authorList = await _context.Authors.ToListAsync();
-            //IEnumerable<Author> objAuthorList = _db.Authors;
+            var commentList = await _context.Comments.ToListAsync();
 
-            return View(authorList);
+            return View(commentList);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Details(int? id)
         {
-            return View();
-        }
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken] // Prevent Cross-site request forgery
-        public async Task<IActionResult> Create(Author author)
-        {
-            _context.Authors.Add(author);
-            await _context.SaveChangesAsync();
+            var comment = await _context.Comments.FirstOrDefaultAsync(c => c.Id == id);
 
-            return RedirectToAction(nameof(Index));
+            if (comment == null)
+            {
+                return NotFound();
+            }
+
+            return View(comment);
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -44,21 +45,21 @@ namespace AWWW_lab2_gr5.Controllers
                 return NotFound();
             }
 
-            var author = await _context.Authors.FirstOrDefaultAsync(a => a.Id == id);
+            var comment = await _context.Comments.FirstOrDefaultAsync(c => c.Id == id);
 
-            if (author == null) 
+            if (comment == null)
             {
                 return NotFound();
             }
 
-            return View(author);
+            return View(comment);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Author author)
+        public async Task<IActionResult> Edit(Comment comment)
         {
-            _context.Authors.Update(author);
+            _context.Comments.Update(comment);
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
@@ -71,14 +72,14 @@ namespace AWWW_lab2_gr5.Controllers
                 return NotFound();
             }
 
-            var author = await _context.Authors.FirstOrDefaultAsync(a => a.Id == id);
+            var comment = await _context.Comments.FirstOrDefaultAsync(c => c.Id == id);
 
-            if (author == null)
+            if (comment == null)
             {
                 return NotFound();
             }
 
-            return View(author);
+            return View(comment);
         }
 
         [HttpPost,ActionName("Delete")]
@@ -90,18 +91,17 @@ namespace AWWW_lab2_gr5.Controllers
                 return NotFound();
             }
 
-            var author = await _context.Authors.FirstOrDefaultAsync(x => x.Id == id);
+            var comment = await _context.Comments.FirstOrDefaultAsync(c => c.Id == id);
 
-            if (author == null)
+            if (comment == null)
             {
                 return NotFound();
             }
 
-            _context.Authors.Remove(author);
+            _context.Comments.Remove(comment);
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
         }
-
     }
 }

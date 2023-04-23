@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Comment>
+
+<div>
+    <div class="row">
+        <div class="col-6">
+            <h1>Comment list</h1>
+        </div>
+        <div class="col-6 text-end pt-0">
+            @*<a asp-controller="Author" asp-action="Create" class="btn btn-dark">Add new author</a>*@
+        </div>
+    </div>
+</div>
+
+<table class="table align-middle" style="width:100%">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(Model => Model.Id)</th>
+            <th>@Html.DisplayNameFor(Model => Model.Title)</th>
+            <th class="col-3">Details/Edit/Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                <td class="col-3">
+                    <div>
+                        <a asp-controller="Comment" asp-action="Details" asp-route-id="@item.Id"
+                           class="btn btn-dark">Details</a>
+                        <a asp-controller="Comment" asp-action="Edit" asp-route-id="@item.Id"
+                           class="btn btn-dark">Edit</a>
+                        <a asp-controller="Comment" asp-action="Delete" asp-route-id="@item.Id"
+                           class="btn btn-danger">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
