@@ -1,0 +1,57 @@
+﻿@model Article
+
+<form method="post">
+    <h2>Edit article</h2>
+    <hr />
+    <div class="form-group">
+        <button type="submit" class="btn btn-dark" style="width:100px">Update</button>
+        <a asp-controller="Article" asp-action="Index" class="btn btn-secondary">Article list</a>
+    </div>
+    <hr />
+    <div>
+        <div>
+            <form>
+                <div class="mb-2">
+                    <label asp-for="Id" class="control-label"></label>
+                    <input asp-for="Id" class="form-control" readonly />
+                </div>
+                <div class="mb-2">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="mb-2">
+                    <label asp-for="CreationTime" class="control-label"></label>
+                    <input asp-for="CreationTime" class="form-control" rows="8" />
+                    <span asp-validation-for="CreationTime" class="text-danger"></span>
+                </div>
+                <div><label asp-for="Author" class="control-label"></label>
+                    <select asp-for="AuthorId" class="form-select" asp-items="ViewBag.AuthorList">
+                        <option value="">-- select author --</option>
+                    </select>
+                    <span asp-validation-for="AuthorId" class="text-danger"></span>
+                </div>
+                <div>
+                    <label asp-for="Category" class="control-label"></label>
+                    <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.CategoryList" multiple>
+                        <option value="">-- select category --</option>
+                    </select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+
+
+    <script>
+        $(document).ready(function () {
+            $('select[multiple]').on('click', 'option', function (e) {
+                e.preventDefault();
+                $(this).prop('selected', !$(this).prop('selected'));
+            });
+        });
+    </script>
+}

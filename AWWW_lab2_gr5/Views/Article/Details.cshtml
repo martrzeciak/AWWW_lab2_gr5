@@ -1,9 +1,7 @@
 ﻿@model Article
 
-<h1>Details</h1>
-
 <div>
-    <h4>Article</h4>
+    <h2>Article details</h2>
     <hr />
     <div>
         <a asp-controller="Article" asp-action="Edit" asp-route-id="Id" class="btn btn-dark">Edit</a>
@@ -42,7 +40,7 @@
             @Html.DisplayFor(model => model.Category.Name)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Tags.First().Name)
+            Tags
         </dt>
         <dd class="col-sm-10">
             @string.Join(", ", Model.Tags.Select(t => t.Name))
@@ -60,16 +58,24 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Comment Id</th>
-                        <th class="p-4">Title</th>
+                        <th class="pe-4">Comment Id</th>
+                        <th class="pe-4">Title</th>
+                        <th class="pe-4">Edit/Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model.Comments)
                     {
                         <tr>
-                            <td>@Html.DisplayFor(modelItem => item.Id)</td>
-                            <td class="p-4">@Html.DisplayFor(modelItem => item.Title)</td>
+                            <td class="pe-4">@Html.DisplayFor(modelItem => item.Id)</td>
+                            <td class="pe-4">@Html.DisplayFor(modelItem => item.Title)</td>
+                            <td class="pe-4">
+                                <div>
+                                    <a asp-controller="Comment" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                    <a asp-controller="Comment" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                    <a asp-controller="Comment" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                </div>
+                            </td>
                         </tr>
                     }
                 </tbody>

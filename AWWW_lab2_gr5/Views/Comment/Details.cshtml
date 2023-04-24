@@ -9,8 +9,9 @@
     <div>
         @*<a asp-controller="Comment" asp-action="Edit" asp-route-id="Id">Edit</a> |
         <a asp-controller="Comment" asp-action="Index">Back</a>*@
-        <a asp-controller="Comment" asp-action="Edit" asp-route-id="Id" class="btn btn-dark">Edit</a>
-        <a asp-controller="Comment" asp-action="Index" class="btn btn-secondary">Back</a>
+        <a asp-controller="Comment" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-dark">Edit</a>
+        <a asp-controller="Article" asp-action="Details" asp-route-id="@Model.ArticleId" class="btn btn-secondary">Take me to related article</a>
+        <a asp-controller="Comment" asp-action="Index" class="btn btn-secondary">Comment list</a>
     </div>
     <hr />
     <dl class="row">
