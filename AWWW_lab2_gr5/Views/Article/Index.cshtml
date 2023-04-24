@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Article>
+
+<div>
+    <div class="row">
+        <div class="col-6">
+            <h1>Article list</h1>
+        </div>
+        <div class="col-6 text-end pt-0">
+            <a asp-controller="Article" asp-action="Create" class="btn btn-dark">Add new article</a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped align-middle" style="width:100%">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(Model => Model.Id)</th>
+            <th>@Html.DisplayNameFor(Model => Model.Title)</th>
+            <th>@Html.DisplayNameFor(Model => Model.CreationTime)</th>
+            <th>@Html.DisplayNameFor(Model => Model.Author.GetFullName)</th>
+            <th>@Html.DisplayNameFor(Model => Model.Category.Name)</th>
+            <th>Edit/Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                <td>@Html.DisplayFor(modelItem => item.CreationTime)</td>
+                <td>@Html.DisplayFor(modelItem => item.Author.GetFullName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Category.Name)</td>
+                <td class="col-2">
+                    <div>
+                        <a asp-controller="Article" asp-action="Details" asp-route-id="@item.Id"
+                           class="btn btn-dark">Details</a>
+                        <a asp-controller="Article" asp-action="Delete" asp-route-id="@item.Id"
+                           class="btn btn-danger">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

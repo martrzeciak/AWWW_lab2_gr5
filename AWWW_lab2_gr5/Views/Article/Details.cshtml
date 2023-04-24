@@ -1,0 +1,80 @@
+﻿@model Article
+
+<h1>Details</h1>
+
+<div>
+    <h4>Article</h4>
+    <hr />
+    <div>
+        <a asp-controller="Article" asp-action="Edit" asp-route-id="Id" class="btn btn-dark">Edit</a>
+        <a asp-controller="Article" asp-action="Index" class="btn btn-secondary">Back</a>
+    </div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CreationTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CreationTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Author.GetFullName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Author.GetFullName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tags.First().Name)
+        </dt>
+        <dd class="col-sm-10">
+            @string.Join(", ", Model.Tags.Select(t => t.Name))
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+        <dt class="col-sm-2">
+            Comments
+        </dt>
+        <dd class="col-sm-10">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Comment Id</th>
+                        <th class="p-4">Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Comments)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                            <td class="p-4">@Html.DisplayFor(modelItem => item.Title)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>         
+        </dd>
+    </dl>
+</div>
+

@@ -1,4 +1,6 @@
-﻿namespace AWWW_lab2_gr5.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace AWWW_lab2_gr5.Models
 {
     public class Article
     {
@@ -6,9 +8,10 @@
         public string Title { get; set; }
         public string Lead { get; set; }
         public string Content { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime CreationTime { get; set; } = DateTime.Now;
-
-
+  
         public int AuthorId { get; set; }
         public virtual Author Author { get; set; }
 
